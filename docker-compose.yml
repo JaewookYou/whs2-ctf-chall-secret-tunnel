@@ -7,25 +7,24 @@ services:
     container_name: extserver
     volumes:
       - ./src/extserver/:/home/appuser/app
-      - ./src/ssh_keys:/home/appuser/.ssh:ro
     environment:
       LC_ALL: C.UTF-8
     ports:
       - "8090:8090"
+      - "2222:22"
+    networks:
+      - ctf_network
       
   intserver:
     build: 
       context: .
       dockerfile: docker/intserver/Dockerfile
     container_name: intserver
-    volumes:
-      - ./src/ssh_keys:/home/ctfuser/.ssh:ro
     environment:
       LC_ALL: C.UTF-8
     networks:
-      - isolated_network
+      - ctf_network
 
 networks:
-  isolated_network:
+  ctf_network:
     driver: bridge
-    internal: true
