@@ -1,3 +1,4 @@
 #!/bin/sh
+
 /usr/sbin/sshd
-python3 /home/appuser/app/app.py
+su - appuser -c "source /home/appuser/venv/bin/activate && python3 /home/appuser/app/app.py"
