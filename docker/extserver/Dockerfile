@@ -41,6 +41,8 @@ COPY ./src/extserver/app.py /home/appuser/app/
 
 RUN chown -R appuser:appuser /home/appuser/app
 
+echo "flag{dummy_flag_1}" > /home/appuser/flag.txt
+
 EXPOSE 8090 22
 
 COPY ./src/extserver/start.sh /start.sh
