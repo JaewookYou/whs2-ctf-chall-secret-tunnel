@@ -1,0 +1,11 @@
+# [자동생성: setup_external.sh] build 시 host 네트워크 사용 → DNS 제약 환경 빌드 보정.
+services:
+  extserver:
+    build:
+      network: host
+  intserver:
+    build:
+      network: host
+  flagserver:
+    build:
+      network: host
