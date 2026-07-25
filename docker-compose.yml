@@ -1,6 +1,7 @@
 version: "3"
 services:
   extserver:
+    restart: unless-stopped
     build: 
       context: .
       dockerfile: docker/extserver/Dockerfile
@@ -16,6 +17,7 @@ services:
       - external_network
       
   intserver:
+    restart: unless-stopped
     build: 
       context: .
       dockerfile: docker/intserver/Dockerfile
@@ -27,6 +29,7 @@ services:
       - internal_network
 
   flagserver:
+    restart: unless-stopped
     build: 
       context: .
       dockerfile: docker/flagserver/Dockerfile
