@@ -41,7 +41,8 @@ COPY ./src/extserver/app.py /home/appuser/app/
 
 RUN chown -R appuser:appuser /home/appuser/app
 
-RUN echo "flag{dummy_flag_1}" > /home/appuser/flag.txt
+ARG FLAG_EXTSERVER=flag{set_FLAG_EXTSERVER_in_dotenv}
+RUN echo "$FLAG_EXTSERVER" > /home/appuser/flag.txt
 
 EXPOSE 8090 22
 

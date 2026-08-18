@@ -10,7 +10,8 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/s
 RUN echo "AllowUsers flaguser" >> /etc/ssh/sshd_config
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 RUN sed -i 's/AllowTcpForwarding no/AllowTcpForwarding yes/' /etc/ssh/sshd_config
-RUN echo "flag{dummy_flag}" > /home/flaguser/flag.txt
+ARG FLAG_FLAGSERVER=flag{set_FLAG_FLAGSERVER_in_dotenv}
+RUN echo "$FLAG_FLAGSERVER" > /home/flaguser/flag.txt
 
 WORKDIR /home/flaguser/
 

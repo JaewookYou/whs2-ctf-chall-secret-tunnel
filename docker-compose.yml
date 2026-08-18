@@ -5,6 +5,8 @@ services:
     build: 
       context: .
       dockerfile: docker/extserver/Dockerfile
+      args:
+        FLAG_EXTSERVER: ${FLAG_EXTSERVER:-flag{set_FLAG_EXTSERVER_in_dotenv}}
     container_name: extserver
     volumes:
       - ./src/extserver/:/home/flaguser/app
@@ -33,6 +35,8 @@ services:
     build: 
       context: .
       dockerfile: docker/flagserver/Dockerfile
+      args:
+        FLAG_FLAGSERVER: ${FLAG_FLAGSERVER:-flag{set_FLAG_FLAGSERVER_in_dotenv}}
     container_name: flagserver
     environment:
       LC_ALL: C.UTF-8
