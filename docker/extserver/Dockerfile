@@ -39,7 +39,12 @@ RUN pip3 install -r requirements.txt
 
 COPY ./src/extserver/app.py /home/appuser/app/
 
-RUN chown -R appuser:appuser /home/appuser/app
+# RCE는 appuser 권한으로 실행된다. app 디렉터리를 appuser가 소유하면
+# 플레이어가 app.py를 지우거나 권한을 깨서 서비스를 죽일 수 있으므로
+# root 소유 + 읽기 전용으로 둔다 (실행에는 읽기 권한만 필요).
+RUN chown -R root:root /home/appuser/app \
+ && chmod 755 /home/appuser/app \
+ && chmod 644 /home/appuser/app/app.py
 
 ARG FLAG_EXTSERVER=flag{set_FLAG_EXTSERVER_in_dotenv}
 RUN echo "$FLAG_EXTSERVER" > /home/appuser/flag.txt
