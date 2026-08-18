@@ -75,7 +75,14 @@ def get_file():
 
 @app.route("/", methods=["GET"])
 def index():
-    return "hello"
+    body = (
+        "hello\n"
+        "\n"
+        "available endpoints:\n"
+        "  POST /process     params: data, signature\n"
+        "  POST /get_file    params: filename\n"
+    )
+    return body, 200, {"Content-Type": "text/plain; charset=utf-8"}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8090, debug=True)
